@@ -14,10 +14,11 @@ public class UserInfoDAO {
 	private ResultSet rs = null;
 	private PreparedStatement ps = null;
 
-	private String url = "jdbc:mysql://localhost:3306/jv32?characterEncoding=utf8";
-	private String user = "root";
-	private String password = "";
-	private String driverName="com.mysql.cj.jdbc.Driver";
+	private String url = "jdbc:oracle:oci:";
+	private String user = "user01/";
+	private String password = "User01";
+	private String netService = "@WINSRV01";
+	private String driverName ="oracle.jdbc.driver.OracleDriver";
 	
 	/**
 	 * ユーザID重複チェック用
@@ -29,8 +30,8 @@ public class UserInfoDAO {
 		
 		try {
 			Class.forName(this.driverName);
-			con = DriverManager.getConnection(this.url, this.user, this.password);
-			String sql = "SELECT * FROM user_info WHERE id = ?;";
+			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
+			String sql = "SELECT * FROM user_info WHERE id = ?";
 			// SQLを生成
 			ps = con.prepareStatement(sql);
 			// プレースホルダーにidを付与
@@ -57,8 +58,8 @@ public class UserInfoDAO {
 		
 		try {
 			Class.forName(this.driverName);
-			con = DriverManager.getConnection(this.url, this.user, this.password);
-			String sql = "SELECT * FROM user_info WHERE id = ? AND pass = ?;";
+			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
+			String sql = "SELECT * FROM user_info WHERE id = ? AND pass = ?";
 			// SQLを生成
 			ps = con.prepareStatement(sql);
 			// プレースホルダーにidを付与
@@ -84,9 +85,9 @@ public class UserInfoDAO {
 
 		try {
 			Class.forName(this.driverName);
-			con = DriverManager.getConnection(this.url, this.user, this.password);
+			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
 
-			ps = con.prepareStatement("INSERT INTO user_info(id, name, pass, classification) VALUES(?, ?, ?, ?);");
+			ps = con.prepareStatement("INSERT INTO user_info(id, name, pass, classification) VALUES(?, ?, ?, ?)");
 
 			ps.setInt(1, dto.getId());
 			ps.setString(2, dto.getName());

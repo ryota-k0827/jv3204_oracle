@@ -13,10 +13,11 @@ public class ProductDAO {
 	private ResultSet rs = null;
 	private PreparedStatement ps = null;
 
-	private String driverName = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/jv32?characterEncoding=utf8";
-	private String user = "root";
-	private String password = "";
+	private String url = "jdbc:oracle:oci:";
+	private String user = "user01/";
+	private String password = "User01";
+	private String netService = "@WINSRV01";
+	private String driverName ="oracle.jdbc.driver.OracleDriver";
 
 	/**
 	 * 商品テーブルのデータを全取得する。
@@ -30,7 +31,7 @@ public class ProductDAO {
 
 			// JDBCドライバのロード
 			Class.forName(this.driverName);
-			con = DriverManager.getConnection(this.url, this.user, this.password);
+			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
 
 			String sql ="SELECT * FROM products";
 			//SQLの生成
@@ -58,7 +59,7 @@ public class ProductDAO {
 			// JDBCドライバを用意
 			Class.forName(this.driverName);
 			// DB 接続
-			con = DriverManager.getConnection(this.url, this.user, this.password);
+			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
 			
 			// 処理
 			//価格(high)以外空白時
@@ -275,7 +276,7 @@ public class ProductDAO {
 			// JDBCドライバを用意
 			Class.forName(this.driverName);
 			// DB 接続
-			con = DriverManager.getConnection(this.url, this.user, this.password);
+			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
 			// sqlを生成
 			String sql = "SELECT * FROM products WHERE no = ?;";
 			ps = con.prepareStatement(sql);
@@ -302,7 +303,7 @@ public class ProductDAO {
 		try {
 			Class.forName(this.driverName);
 
-			con = DriverManager.getConnection(this.url, this.user, this.password);
+			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
 
 			// INSERT文を生成
 			ps = con.prepareStatement("INSERT INTO products(no, name, category_id, price) VALUES(?, ?, ?, ?);");
