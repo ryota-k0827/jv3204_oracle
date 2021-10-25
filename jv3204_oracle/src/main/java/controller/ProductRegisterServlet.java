@@ -199,7 +199,7 @@ public class ProductRegisterServlet extends HttpServlet {
 		productModel.addProduct(no, strName, categoryId, price);
 		
 		// 商品登録完了ページへ推移
-		response.sendRedirect("/jv3204/product.jsp");
+		response.sendRedirect("/jv3204_oracle/product.jsp");
 	}
 
 	/**

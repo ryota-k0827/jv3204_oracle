@@ -32,7 +32,7 @@ public class ProductDAO {
 			// JDBCドライバのロード
 			Class.forName(this.driverName);
 			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
-
+			System.out.println("全件検索");
 			String sql ="SELECT * FROM products";
 			//SQLの生成
 			ps = con.prepareStatement(sql);
@@ -64,7 +64,7 @@ public class ProductDAO {
 			// 処理
 			//価格(high)以外空白時
 			if (name.equals("") && categoryId == 0 && lowPrice == 0) {
-				String sql = "SELECT * FROM products WHERE price <= ?;";
+				String sql = "SELECT * FROM products WHERE price <= ?";
 				ps = con.prepareStatement(sql);
 				
 				System.out.println("sql1→" + sql);
@@ -76,7 +76,7 @@ public class ProductDAO {
 			}
 			//価格(low)以外空白時
 			else if (name.equals("") && categoryId == 0 && highPrice == 0) {
-				String sql = "SELECT * FROM products WHERE price >= ?;";
+				String sql = "SELECT * FROM products WHERE price >= ?";
 				ps = con.prepareStatement(sql);
 				
 				System.out.println("sql1→" + sql);
@@ -88,7 +88,7 @@ public class ProductDAO {
 			}
 			//カテゴリー以外空白時
 			else if (name.equals("") && lowPrice == 0 && highPrice == 0) {
-				String sql = "SELECT * FROM products WHERE category_id = ?;";
+				String sql = "SELECT * FROM products WHERE category_id = ?";
 				ps = con.prepareStatement(sql);
 				
 				System.out.println("sql1→" + sql);
@@ -100,7 +100,7 @@ public class ProductDAO {
 			}
 			//商品名以外空白時
 			else if (categoryId == 0 && lowPrice == 0 && highPrice == 0) {
-				String sql = "SELECT * FROM products WHERE name = ?;";
+				String sql = "SELECT * FROM products WHERE product_name = ?";
 				ps = con.prepareStatement(sql);
 				
 				System.out.println("sql1→" + sql);
@@ -112,7 +112,7 @@ public class ProductDAO {
 			}
 			//価格(high)以外空白時
 			else if (name.equals("") && categoryId == 0 && lowPrice == 0) {
-				String sql = "SELECT * FROM products WHERE price <= ?;";
+				String sql = "SELECT * FROM products WHERE price <= ?";
 				ps = con.prepareStatement(sql);
 				
 				System.out.println("sql1→" + sql);
@@ -124,7 +124,7 @@ public class ProductDAO {
 			}
 			//価格(low)以外空白時
 			else if (name.equals("") && categoryId == 0 && highPrice == 0) {
-				String sql = "SELECT * FROM products WHERE price >= ?;";
+				String sql = "SELECT * FROM products WHERE price >= ?";
 				ps = con.prepareStatement(sql);
 				
 				System.out.println("sql1→" + sql);
@@ -136,7 +136,7 @@ public class ProductDAO {
 			}
 			//カテゴリー以外空白時
 			else if (name.equals("") && lowPrice == 0 && highPrice == 0) {
-				String sql = "SELECT * FROM products WHERE category_id = ?;";
+				String sql = "SELECT * FROM products WHERE category_id = ?";
 				ps = con.prepareStatement(sql);
 				
 				System.out.println("sql1→" + sql);
@@ -148,7 +148,7 @@ public class ProductDAO {
 			}
 			//商品名以外空白時
 			else if (categoryId == 0 && lowPrice == 0 && highPrice == 0) {
-				String sql = "SELECT * FROM products WHERE name = ?;";
+				String sql = "SELECT * FROM products WHERE product_name = ?";
 				ps = con.prepareStatement(sql);
 				
 				System.out.println("sql1→" + sql);
@@ -160,7 +160,7 @@ public class ProductDAO {
 			}
 			//価格が両方空白時
 			else if(lowPrice == 0 && highPrice == 0) {
-				String sql = "SELECT * FROM products WHERE name = ? AND category_id = ?;";
+				String sql = "SELECT * FROM products WHERE product_name = ? AND category_id = ?";
 				ps = con.prepareStatement(sql);
 	
 				System.out.println("sql1→" + sql);
@@ -173,7 +173,7 @@ public class ProductDAO {
 			}
 			//価格(high)とカテゴリーが空白時
 			else if(categoryId == 0 && highPrice == 0) {
-				String sql = "SELECT * FROM products WHERE name = ? AND price >= ?;";
+				String sql = "SELECT * FROM products WHERE product_name = ? AND price >= ?";
 				ps = con.prepareStatement(sql);
 	
 				System.out.println("sql1→" + sql);
@@ -186,7 +186,7 @@ public class ProductDAO {
 			}
 			//価格(high)と商品名が空白時
 			else if(name.equals("") && highPrice == 0) {
-				String sql = "SELECT * FROM products WHERE category_id = ? AND price >= ?;";
+				String sql = "SELECT * FROM products WHERE category_id = ? AND price >= ?";
 				ps = con.prepareStatement(sql);
 	
 				System.out.println("sql1→" + sql);
@@ -199,7 +199,7 @@ public class ProductDAO {
 			}
 			//価格(low)とカテゴリーが空白時
 			else if(categoryId == 0 && lowPrice == 0) {
-				String sql = "SELECT * FROM products WHERE name = ? AND price <= ?;";
+				String sql = "SELECT * FROM products WHERE product_name = ? AND price <= ?";
 				ps = con.prepareStatement(sql);
 	
 				System.out.println("sql1→" + sql);
@@ -212,7 +212,7 @@ public class ProductDAO {
 			}
 			//価格(low)と商品名が空白時
 			else if(name.equals("") && lowPrice == 0) {
-				String sql = "SELECT * FROM products WHERE category_id = ? AND price <= ?;";
+				String sql = "SELECT * FROM products WHERE category_id = ? AND price <= ?";
 				ps = con.prepareStatement(sql);
 	
 				System.out.println("sql1→" + sql);
@@ -225,7 +225,7 @@ public class ProductDAO {
 			}
 			//カテゴリーと商品名が空白時
 			else if(name.equals("") && categoryId == 0) {
-				String sql = "SELECT * FROM products WHERE price BETWEEN ? AND ?;";
+				String sql = "SELECT * FROM products WHERE price BETWEEN ? AND ?";
 				ps = con.prepareStatement(sql);
 	
 				System.out.println("sql1→" + sql);
@@ -238,7 +238,7 @@ public class ProductDAO {
 			}
 			//全項目入力時
 			else {
-				String sql = "SELECT * FROM products WHERE name = ? AND category_id = ? AND price BETWEEN ? AND ?;";
+				String sql = "SELECT * FROM products WHERE product_name = ? AND category_id = ? AND price BETWEEN ? AND ?";
 				ps = con.prepareStatement(sql);
 	
 				System.out.println("sql1→" + sql);
@@ -255,8 +255,7 @@ public class ProductDAO {
 		
 			// SQLを実行
 			rs = ps.executeQuery();
-			System.out.println(rs);
-
+			
 		} catch (ClassNotFoundException e) {
 
 			e.printStackTrace();
@@ -278,7 +277,7 @@ public class ProductDAO {
 			// DB 接続
 			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
 			// sqlを生成
-			String sql = "SELECT * FROM products WHERE no = ?;";
+			String sql = "SELECT * FROM products WHERE no = ?";
 			ps = con.prepareStatement(sql);
 			// sqlに商品IDを付与
 			ps.setInt(1, no);
@@ -306,7 +305,7 @@ public class ProductDAO {
 			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
 
 			// INSERT文を生成
-			ps = con.prepareStatement("INSERT INTO products(no, name, category_id, price) VALUES(?, ?, ?, ?);");
+			ps = con.prepareStatement("INSERT INTO products(no, product_name, category_id, price) VALUES(?, ?, ?, ?)");
 
 			ps.setInt(1, dto.getId());
 			ps.setString(2, dto.getName());
