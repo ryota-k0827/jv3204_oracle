@@ -161,13 +161,13 @@ public class LoginServlet extends HttpServlet {
 			if (getClassification == 1) {
 				System.out.println("ログイン成功");
 				//商品検索ページへ推移
-				response.sendRedirect("/jv3204/product_search.jsp");
+				response.sendRedirect("/jv3204_oracle/product_search.jsp");
 				// 処理を抜ける
 				return;
 			} else {
 				System.out.println("ログイン成功");
 				//商品管理ページへ推移
-				response.sendRedirect("/jv3204/product_manager.jsp");
+				response.sendRedirect("/jv3204_oracle/product_manager.jsp");
 				// 処理を抜ける
 				return;
 			}

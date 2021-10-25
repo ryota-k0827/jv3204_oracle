@@ -18,7 +18,7 @@ public class CategoryDAO {
 	private String driverName ="oracle.jdbc.driver.OracleDriver";
 
 	/**
-	 * カテゴリーテーブルのデータを全首都
+	 * カテゴリーテーブルのデータを全取得
 	 *
 	 * @return rs
 	 * @throws SQLException
@@ -50,7 +50,7 @@ public class CategoryDAO {
 		try {
 			Class.forName(this.driverName);
 			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
-			String sql ="SELECT * FROM categories WHERE id = ?";
+			String sql ="SELECT * FROM categories WHERE category_id = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, categoryId);
 			rs = ps.executeQuery();

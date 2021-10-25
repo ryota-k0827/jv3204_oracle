@@ -31,7 +31,7 @@ public class ProductModel {
 			while (rs.next()) {
 				ProductDTO dto = new ProductDTO();
 				dto.setId(rs.getInt("no"));
-				dto.setName(rs.getString("name"));
+				dto.setName(rs.getString("product_name"));
 				dto.setCategoryId(rs.getInt("category_id"));
 				dto.setPrice(rs.getInt("price"));
 
@@ -74,7 +74,7 @@ public class ProductModel {
 				ProductDTO dto = new ProductDTO();
 	
 				dto.setId(rs.getInt("no"));
-				dto.setName(rs.getString("name"));
+				dto.setName(rs.getString("product_name"));
 				dto.setCategoryId(rs.getInt("category_id"));
 				dto.setPrice(rs.getInt("price"));
 
@@ -110,7 +110,7 @@ public class ProductModel {
 			rs = dao.searchProducts(no);
 			if (rs.next()) {
 				dto.setId(rs.getInt("no"));
-				dto.setName(rs.getString("name"));
+				dto.setName(rs.getString("product_name"));
 				dto.setCategoryId(rs.getInt("category_id"));
 				dto.setPrice(rs.getInt("price"));
 			} else {

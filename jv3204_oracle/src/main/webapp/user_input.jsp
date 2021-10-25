@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    // セッションを破棄
+    session.invalidate();
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +20,8 @@
 <p>区分　<input type="radio" name="classification" value=1 checked>会員
 <input type="radio" name="classification" value=2>管理者
 </p>
-<button type ="submit" name ="sb" value="register">登録</button>
+<button type ="submit" name ="sb" value="register">登録</button><hr>
+<a href="index.html">TOPへ</a>
 </form>
 </body>
 

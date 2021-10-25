@@ -25,8 +25,8 @@ public class CategoryModel {
 			rs = dao.searchCategory();
 			while (rs.next()) {
 				CategoryDTO dto = new CategoryDTO();
-				dto.setId(rs.getInt("id"));
-				dto.setName(rs.getString("name"));
+				dto.setId(rs.getInt("category_id"));
+				dto.setName(rs.getString("category_name"));
 
 				categoryList.add(dto);
 			}
@@ -57,8 +57,8 @@ public class CategoryModel {
 		try {
 			// データを取得
 			rs = dao.searchCategory(categoryId);
-			categoryData.setId(rs.getInt("id"));
-			categoryData.setName(rs.getString("name"));
+			categoryData.setId(rs.getInt("category_id"));
+			categoryData.setName(rs.getString("category_name"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

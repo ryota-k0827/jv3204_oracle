@@ -17,6 +17,7 @@
 </head>
 <body>
 <p>【管理者】：<% out.print(strName); %>さん</p>
+<a href="login.jsp">ログアウト</a><hr>
 <h1>商品管理</h1>
 <form action="./ProductRegisterServlet" method="post">
 	<p>商品番号<input type="text" name="no" value=""></p>
