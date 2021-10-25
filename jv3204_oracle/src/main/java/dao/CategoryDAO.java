@@ -11,10 +11,11 @@ public class CategoryDAO {
 	private ResultSet rs = null;
 	private PreparedStatement ps = null;
 
-	private String url = "jdbc:mysql://localhost:3306/jv32?characterEncoding=utf8";
-	private String user = "root";
-	private String password = "";
-	private String driverName ="com.mysql.cj.jdbc.Driver";
+	private String url = "jdbc:oracle:oci:";
+	private String user = "user01/";
+	private String password = "User01";
+	private String netService = "@WINSRV01";
+	private String driverName ="oracle.jdbc.driver.OracleDriver";
 
 	/**
 	 * カテゴリーテーブルのデータを全首都
@@ -26,7 +27,7 @@ public class CategoryDAO {
 
 		try {
 			Class.forName(this.driverName);
-			con = DriverManager.getConnection(this.url, this.user, this.password);
+			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
 			String sql ="SELECT * FROM categories";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -48,7 +49,7 @@ public class CategoryDAO {
 
 		try {
 			Class.forName(this.driverName);
-			con = DriverManager.getConnection(this.url, this.user, this.password);
+			con = DriverManager.getConnection(this.url + this.user + this.password + this.netService);
 			String sql ="SELECT * FROM categories WHERE id = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, categoryId);
