@@ -4,6 +4,18 @@
     pageEncoding="UTF-8" import="java.util.ArrayList"%>
     <%
     String strName = (String)session.getAttribute("NAME");
+    String cfName = (String)session.getAttribute("CFNAME");
+    if (strName == null) {
+    	String result = "セッションが無効です。<br>再度ログインしてください。";
+		String backPages = "login.jsp";
+		request.setAttribute("RESULT", result);
+		request.setAttribute("BACKPAGES", backPages);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/error.jsp"); 
+		
+		rd.forward(request, response);
+		return;
+    }
     
 	ArrayList<ProductDTO> productDtoList = (ArrayList<ProductDTO>) request.getAttribute("productDtoList");
 	ArrayList<CategoryDTO> categoryDtoList = (ArrayList<CategoryDTO>) request.getAttribute("categoryDtoList");
@@ -15,7 +27,7 @@
 <title>商品検索結果</title>
 </head>
 <body>
-<p>【会員】：<% out.print(strName); %>様</p>
+<p>【<% out.print(cfName); %>】：<% out.print(strName); %>さん</p>
 <h1>商品検索結果</h1>
 <table>
 	<tr>
@@ -35,7 +47,8 @@
 	</tr>
 	<% } %>
 </table>
+<hr>
 <a href="product_search.jsp">商品検索へ</a>　
-<a href="index.html">TOPへ</a><br>
+<a href="select_page.jsp">TOPへ</a>
 </body>
 </html>
