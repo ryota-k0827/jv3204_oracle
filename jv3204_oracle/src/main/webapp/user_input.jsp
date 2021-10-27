@@ -13,15 +13,15 @@
 
 <body>
 <h1>新規登録</h1>
-<form action="./UserRegisterServlet" method="post">
-<p>ユーザID<input type="text" name="user_id" value=""></p>
-<p>ユーザ名<input type="text" name="user_name" value=""></p>
-<p>パスワード<input type="password" name="pass" value=""></p>
-<p>区分　<input type="radio" name="classification" value=1 checked>会員
-<input type="radio" name="classification" value=2>管理者
-</p>
-<button type ="submit" name ="sb" value="register">登録</button><hr>
-<a href="index.html">TOPへ</a>
+<form action="./UserRegisterServlet" method="post" autocomplete="off">
+	<p>ユーザID<input type="text" name="user_id" value=""></p>
+	<p>ユーザ名<input type="text" name="user_name" value=""></p>
+	<p>パスワード<input type="password" name="pass" value=""></p>
+	<p>区分　<input type="radio" name="classification" value=1 checked>会員
+	<input type="radio" name="classification" value=2>管理者
+	</p>
+	<button type ="submit" name ="sb" value="register">登録</button><hr>
+	<a href="index.html">TOPへ</a>
 </form>
 </body>
 

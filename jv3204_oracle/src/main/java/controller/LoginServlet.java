@@ -158,19 +158,18 @@ public class LoginServlet extends HttpServlet {
 			 */
 			HttpSession session = request.getSession();
 			session.setAttribute("NAME", getName);
+			session.setAttribute("CF", getClassification);
 			if (getClassification == 1) {
-				System.out.println("ログイン成功");
-				//商品検索ページへ推移
-				response.sendRedirect("/jv3204_oracle/product_search.jsp");
-				// 処理を抜ける
-				return;
+				session.setAttribute("CFNAME", "会員");
 			} else {
-				System.out.println("ログイン成功");
-				//商品管理ページへ推移
-				response.sendRedirect("/jv3204_oracle/product_manager.jsp");
-				// 処理を抜ける
-				return;
+				session.setAttribute("CFNAME", "管理者");
 			}
+			
+			System.out.println("ログイン成功");
+			// 選択ページへ推移
+			response.sendRedirect("/jv3204_oracle/select_page.jsp");
+			// 処理を抜ける
+			return;
 		}
 		// ユーザIDが正しくない時
 		else if (!userExist) {

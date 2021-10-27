@@ -4,6 +4,7 @@
     pageEncoding="UTF-8" import="java.util.ArrayList"%>
     <%
     String strName = (String)session.getAttribute("NAME");
+    String cfName = (String)session.getAttribute("CFNAME");
     if (strName == null) {
     	String result = "セッションが無効です。<br>再度ログインしてください。";
 		String backPages = "login.jsp";
@@ -13,6 +14,7 @@
 		RequestDispatcher rd = request.getRequestDispatcher("/error.jsp"); 
 		
 		rd.forward(request, response);
+		return;
     }
     // CategoryModelをインスタンス化
 	CategoryModel categoryModel = new CategoryModel();
@@ -26,10 +28,10 @@
 <title>商品検索</title>
 </head>
 <body>
-<p>【会員】：<% out.print(strName); %>様</p>
+<p>【<% out.print(cfName);  %>】：<% out.print(strName); %>さん</p>
 <a href="login.jsp">ログアウト</a><hr>
 <h1>商品検索</h1>
-<form action="./ProductSearchServlet" method="post">
+<form action="./ProductSearchServlet" method="post" autocomplete="off">
 	<p>商品名<input type="text" name="name" value=""></p>
 	<p>カテゴリー
 	<select name="category">
@@ -42,5 +44,7 @@
 	<input type="text" name="high_price" value="">円</p>
 	<button type ="submit" name ="sb" value="submit">実行</button>
 </form>
+<hr>
+<a href="select_page.jsp">TOPへ</a>
 </body>
 </html>
