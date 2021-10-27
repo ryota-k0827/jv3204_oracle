@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%
     // セッションを破棄
+    
     session.invalidate();
     %>
 <!DOCTYPE html>
